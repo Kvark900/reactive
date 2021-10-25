@@ -100,20 +100,22 @@ public class ProductService {
                 .doOnNext((product -> {
                     if (successesCount == 3) throw new RuntimeException("Not needed request: " + uri);
                 }))
-                .doOnComplete(() -> {
-                    long end = System.currentTimeMillis();
-                    long duration = end - start;
-                    log.info("Time elapsed for request {} is {}", uri, duration);
-                    log.info("Completed request {} at {}\n", uri, LocalDateTime.now());
-                    successesCount++;
-                    saveRequest(Request
-                            .builder()
-                            .url(uri)
-                            .response_time(duration)
-                            .request_executed_at(LocalDateTime.now())
-                            .build()).subscribe();
-                })
+                .doOnComplete(() -> onCompleteGettingProducts(uri, start))
                 ;
+    }
+
+    private void onCompleteGettingProducts(String uri, long start) {
+        long end = System.currentTimeMillis();
+        long duration = end - start;
+        log.info("Time elapsed for request {} is {}", uri, duration);
+        log.info("Completed request {} at {}", uri, LocalDateTime.now());
+        successesCount++;
+        saveRequest(Request
+                .builder()
+                .url(uri)
+                .response_time(duration)
+                .request_executed_at(LocalDateTime.now())
+                .build()).subscribe();
     }
 
     @Transactional

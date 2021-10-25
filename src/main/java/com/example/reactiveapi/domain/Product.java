@@ -20,13 +20,4 @@ public class Product {
     private Integer product_id;
     private Double price;
 
-    @Override
-    public String toString() {
-        return new StringJoiner(",\n ",
-                "[", "]")
-                .add("id=" + product_id)
-                .add("price=" + price)
-                .add("\n")
-                .toString();
-    }
 }

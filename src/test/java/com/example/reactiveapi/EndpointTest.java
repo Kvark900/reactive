@@ -136,36 +136,4 @@ public class EndpointTest {
                 }))
                 ;
     }
-
-    @Getter
-    @Setter
-    class ApiSubscriber extends BaseSubscriber {
-        private Subscription subscription;
-
-        @Override
-        protected void hookOnSubscribe(Subscription subscription) {
-            super.hookOnSubscribe(subscription);
-            whenNotNeededAbort(subscription);
-            this.subscription = subscription;
-        }
-
-        @Override
-        protected void hookOnNext(Object value) {
-            requestUnbounded();
-            whenNotNeededAbort(subscription);
-        }
-
-        @Override
-        protected void hookOnComplete() {
-            super.hookOnComplete();
-            successesCount++;
-        }
-
-        private void whenNotNeededAbort(Subscription subscription) {
-            if (successesCount == 3) {
-                subscription.cancel();
-                throw new RuntimeException("Not needed request");
-            }
-        }
-    }
 }
