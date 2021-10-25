@@ -1,6 +1,6 @@
 # Getting Started
 
-###Setting up the database
+### Setting up the database
 
 Set up the postgres database according to `application.properties` file or run `docker-compose up` in `src/main/resources` to deploy 
 `postgres` image.  
@@ -28,14 +28,14 @@ reactive_data:
 Next step is to define the schema and tables.  
 Please use the script provided in `schema.sql` to create the schema and needed tables.
 
-###Running the app
+### Running the app
 The application uses Spring Boot so it is easy to run. You can start it any of a few ways:
 
 - Run the main method from `FlightAdvisorApiApplication`
 - Use the Maven Spring Boot plugin: `mvn spring-boot:run`
 
 
-###Using the app
+### Using the app
 Two routes are exposed in `ProductController`:  
 - `/products` - to get merged and formatted products from heroku routes and store metadata for each heroku request
 - `/products/stats` - for getting response time statistics for a current day
