@@ -31,7 +31,7 @@ Please use the script provided in `schema.sql` to create the schema and needed t
 ### Running the app
 The application uses Spring Boot so it is easy to run. You can start it any of a few ways:
 
-- Run the main method from `FlightAdvisorApiApplication`
+- Run the main method from `ReactiveApiApplication`
 - Use the Maven Spring Boot plugin: `mvn spring-boot:run`
 
 
